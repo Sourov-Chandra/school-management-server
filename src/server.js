@@ -3,6 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 
+// Import your routes here
+import studentRoutes from "./routes/studentRoutes.js";
+
 dotenv.config();
 
 const app = express();
@@ -24,6 +27,9 @@ app.get("/api/health", (req, res) => {
     message: "EduPulse API is running securely.",
   });
 });
+
+// API Routes
+app.use("/api/students", studentRoutes);
 
 // Connect to MongoDB natively, THEN start the server
 connectDB().then(() => {
